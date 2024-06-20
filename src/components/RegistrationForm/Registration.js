@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import register from "../../api/register";
-import { useState, useEffect } from "react";
+import { useState} from "react";
+
 
 
 const Registration = () => {
@@ -9,14 +10,8 @@ const Registration = () => {
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [isSubmitted, setIsSubmitted] = useState(false);
-
-    // useEffect(() => {
-    //     // setIsSubmitted(false);
-    // }, [isSubmitted])
-
-   
-
+    const [isSuccessful, setIsSuccessful] = useState(false);
+    const [isError, setIsError] = useState(false);
 
     const readPassword = (event) =>{
         const input = event.target.value;
@@ -41,22 +36,33 @@ const Registration = () => {
     };
 
     const registerHandler = async (event) => {
-        console.log(email, firstName, lastName);
         event.preventDefault();
-        await register(firstName, lastName, email, password);
+        let response = await register(firstName, lastName, email, password);
         
-        // setIsSubmitted(true);
+        console.log(response);
         
-    
-    }
+        if(response === `${email} is already registered!`) {
+            setIsError(true);
+            setIsSuccessful(false);
+        }
+        else {
+            setIsError(false);
+            setIsSuccessful(true);
+            
+        }
+    };
 
     
 
 
-   
-
+   if (isSuccessful) {
+    return (
+        <Navigate to="/" replace />
+    )
+   } else {
     return (
         <div className="container">
+            {isError? <p className="text-danger">Account with that email already exists</p>: <></>}
             <div className="row">
                 <div className="col-md">
                     <form onSubmit={registerHandler}>
@@ -87,6 +93,9 @@ const Registration = () => {
             </div>
         </div>
     )
-}
+   };
+
+    
+};
 
 export default Registration;

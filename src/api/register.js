@@ -11,7 +11,7 @@ const register = async (firstname, lastname, email, password) => {
         lastname: lastname 
     })
 
-    console.log(results.data);
+    return(results.data);
    
 }
 
