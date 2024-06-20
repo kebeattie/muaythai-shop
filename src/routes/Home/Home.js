@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
     return (
-        <div>
-            <h1>MuayThai shop</h1>
-            <p><Link to="/registration">click</Link></p>
+        <div className="container">
+            <h1 className="col-sm">MuayThai shop</h1>
+            <p className="col-sm"><Link to="/registration">click</Link></p>
         </div>
     )
 }

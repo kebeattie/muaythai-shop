@@ -70,7 +70,7 @@ const createUser = async (req, res) => {
                 res.status(201).send(`User created with email: ${email}`)
             })
     } else {
-        res.send(`${existingUser} is already registered!`);
+        res.send(`${existingUser.email} is already registered!`);
     }
 
 };
