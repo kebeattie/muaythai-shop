@@ -1,7 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
+import { getUser } from './api/user';
 
 function App() {
+  console.log(getUser("cart@email.com"))
   return (
     <div className="App">
       <header className="App-header">
