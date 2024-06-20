@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -12,7 +13,7 @@ const registrationRouter = require('./Routes/registration');
 const logoutRouter = require('./Routes/logout');
 const session = require('express-session');
 const passport = require('passport');
-const port = process.env.PORT || 4001;
+const port = process.env.PORT; 
 
 app.use(bodyParser.json());
 app.use (
