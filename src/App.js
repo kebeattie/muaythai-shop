@@ -3,6 +3,8 @@ import { getUser } from './api/user';
 
 import Register from './routes/Register/Register';
 import Home from './routes/Home/Home';
+import Login from './routes/Login/Login';
+import Product from './routes/Product/Product';
 
 import {
   BrowserRouter as Router,
@@ -23,6 +25,8 @@ function App() {
         <Routes>
           <Route exact path='/' Component={Home}/>
           <Route path="/registration" Component={Register}/>
+          <Route path="/login" Component={Login}/>
+          <Route path="/products/:productId" Component={Product}/>
 
           </Routes>
       </Router>
