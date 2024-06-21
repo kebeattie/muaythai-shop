@@ -10,12 +10,16 @@ import Cart from './routes/Cart/Cart';
 import Checkout from './routes/Checkout/Checkout';
 import Orders from './routes/Orders/Orders';
 import Order from './routes/Order/Order';
+import { useEffect } from 'react';
+import Header from './components/Header/Header';
+import { getLogin } from './api/login';
 
 import {
   BrowserRouter as Router,
   Navigate,
   Route,
-  Routes
+  Routes,
+  json
 } from "react-router-dom";
 import PrivateRoute from './components/ProtectedRoute/ProtectedRoute';
 import { useState } from 'react';
@@ -23,26 +27,55 @@ import { useState } from 'react';
 
 
 function App() {
-  console.log(getUser("cart@email.com"))
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(false);
+  const [session, setSession] = useState({})
+  const [userEmail, setUserEmail] = useState("");
+  
+  // // const getSession = async () => {
+  // //   const results = await getLogin()
+  // //   return results
+  // }
+
+  useEffect(() => {
+
+    if(JSON.stringify(session) === "{}") {
+      setUserEmail("");
+    } else {
+      setUserEmail(session.passport.user);
+    }
+   
+  }, [session]);
+
+
+
+  const createSession = (session, user) => {
+    setSession(session);
+    setUser(user);
+  }
+
+ 
+
   return (
 
     <div className="App">
+      
       <Router>
+      <Header />
 
         <Routes>
           {/* Unprotected routes */}
           <Route exact path='/' Component={Home} />
           <Route path="/registration" Component={Register} />
-          <Route path="/login" Component={Login} />
+          <Route path="/login" element={<Login createSession={createSession} />} />
           <Route path="/products/:productId" Component={Product} />
           <Route path="*" element={<p>404 - Not found</p>} />
+
 
           {/* Protected routes */}
           <Route path="/account"
             element={
-              <PrivateRoute user={user}>
-                <Account />
+              <PrivateRoute user={user} >
+                <Account session={session} createSession={createSession}/>
               </PrivateRoute>
             }
           />
