@@ -13,6 +13,7 @@ import Order from './routes/Order/Order';
 import { useEffect } from 'react';
 import Header from './components/Header/Header';
 import { getLogin } from './api/login';
+import getProducts from './api/getProducts';
 
 import {
   BrowserRouter as Router,
@@ -30,11 +31,17 @@ function App() {
   const [user, setUser] = useState(false);
   const [session, setSession] = useState({})
   const [userEmail, setUserEmail] = useState("");
+  const [products, setProducts]= useState([]);
   
   // // const getSession = async () => {
   // //   const results = await getLogin()
   // //   return results
   // }
+
+  const loadProducts = async () => {
+    setProducts(await getProducts());
+    
+  }
 
   useEffect(() => {
 
@@ -42,10 +49,17 @@ function App() {
       setUserEmail("");
     } else {
       setUserEmail(session.passport.user);
-    }
+    };
+
+    loadProducts();
+    console.log(products);
+   
    
   }, [session]);
 
+
+
+  
 
 
   const createSession = (session, user) => {
