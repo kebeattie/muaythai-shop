@@ -4,7 +4,7 @@ import axios from "axios";
 
 const logout = async () => {
     await axios.post("http://localhost:4001/logout");
-    console.log("logging out");
+
 }
 
 export default logout;
