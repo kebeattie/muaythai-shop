@@ -18,7 +18,8 @@ import {
   BrowserRouter as Router,
   Navigate,
   Route,
-  Routes
+  Routes,
+  json
 } from "react-router-dom";
 import PrivateRoute from './components/ProtectedRoute/ProtectedRoute';
 import { useState } from 'react';
@@ -28,16 +29,24 @@ import { useState } from 'react';
 function App() {
   const [user, setUser] = useState(false);
   const [session, setSession] = useState({})
+  const [userEmail, setUserEmail] = useState("");
   
   // // const getSession = async () => {
   // //   const results = await getLogin()
   // //   return results
   // }
+
   useEffect(() => {
-    console.log(session);
+
+    if(JSON.stringify(session) === "{}") {
+      setUserEmail("");
+    } else {
+      setUserEmail(session.passport.user);
+    }
+   
   }, [session]);
 
-  
+
 
   const createSession = (session, user) => {
     setSession(session);
