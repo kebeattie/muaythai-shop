@@ -14,6 +14,7 @@ import { useEffect } from 'react';
 import Header from './components/Header/Header';
 import { getLogin } from './api/login';
 import getProducts from './api/getProducts';
+import ProductDetails from './routes/Product/ProductDetails';
 
 import {
   BrowserRouter as Router,
@@ -81,7 +82,7 @@ function App() {
           <Route exact path='/' element={<Home products={products}/>} />
           <Route path="/registration" Component={Register} />
           <Route path="/login" element={<Login createSession={createSession} />} />
-          <Route path="/products/:productId" Component={Product} />
+          <Route path=":productId" element={<ProductDetails products={products}/>} />
           <Route path="*" element={<p>404 - Not found</p>} />
 
 
@@ -118,7 +119,7 @@ function App() {
             }
           />
 
-          <Route path="/order/:orderId"
+          <Route path="/order/?orderId"
             element={
               <PrivateRoute user={user}>
                 <Orders />
