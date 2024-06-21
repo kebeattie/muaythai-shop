@@ -8,6 +8,9 @@ loginRouter.post('/', passport.authenticate('local'), (req, res) => {
     res.status(200).send(req.session);
 })
 
+// loginRouter.get('/', (req, res) => {
+//     res.status(200).send(req.session);
+// })
 
 
 module.exports =  loginRouter;

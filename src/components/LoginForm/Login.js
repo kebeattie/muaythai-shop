@@ -30,7 +30,7 @@ const LoginForm = ({ createSession }) => {
             setIsError(true);
             setIsSuccessful(false);
          } else {
-            createSession(results.data);
+            createSession(results.data, true);
             setIsError(false); 
             setIsSuccessful(true);
     }

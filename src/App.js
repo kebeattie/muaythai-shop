@@ -12,6 +12,7 @@ import Orders from './routes/Orders/Orders';
 import Order from './routes/Order/Order';
 import { useEffect } from 'react';
 import Header from './components/Header/Header';
+import { getLogin } from './api/login';
 
 import {
   BrowserRouter as Router,
@@ -28,17 +29,19 @@ function App() {
   const [user, setUser] = useState(false);
   const [session, setSession] = useState({})
   
-
+  // // const getSession = async () => {
+  // //   const results = await getLogin()
+  // //   return results
+  // }
   useEffect(() => {
-    console.log("session has changed");
     console.log(session);
-  }, [session])
+  }, [session]);
 
   
 
-  const createSession = (session) => {
+  const createSession = (session, user) => {
     setSession(session);
-    setUser(true);
+    setUser(user);
   }
 
  
@@ -63,7 +66,7 @@ function App() {
           <Route path="/account"
             element={
               <PrivateRoute user={user} >
-                <Account session={session}/>
+                <Account session={session} createSession={createSession}/>
               </PrivateRoute>
             }
           />

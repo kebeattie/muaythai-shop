@@ -17,4 +17,14 @@ const login = async (email, password) => {
     
 }
 
+// export const getLogin = async () => {
+//     try{
+//         let results = await axios.get("http://localhost:4001/login");
+//         console.log(results.data);
+//         return results;
+//     } catch(error) {
+//         return error;
+//     }
+// }
+
 export default login;
