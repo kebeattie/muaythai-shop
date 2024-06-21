@@ -10,6 +10,8 @@ import Cart from './routes/Cart/Cart';
 import Checkout from './routes/Checkout/Checkout';
 import Orders from './routes/Orders/Orders';
 import Order from './routes/Order/Order';
+import { useEffect } from 'react';
+import Header from './components/Header/Header';
 
 import {
   BrowserRouter as Router,
@@ -23,26 +25,45 @@ import { useState } from 'react';
 
 
 function App() {
-  console.log(getUser("cart@email.com"))
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(false);
+  const [session, setSession] = useState({})
+  
+
+  useEffect(() => {
+    console.log("session has changed");
+    console.log(session);
+  }, [session])
+
+  
+
+  const createSession = (session) => {
+    setSession(session);
+    setUser(true);
+  }
+
+ 
+
   return (
 
     <div className="App">
+      
       <Router>
+      <Header />
 
         <Routes>
           {/* Unprotected routes */}
           <Route exact path='/' Component={Home} />
           <Route path="/registration" Component={Register} />
-          <Route path="/login" Component={Login} />
+          <Route path="/login" element={<Login createSession={createSession} />} />
           <Route path="/products/:productId" Component={Product} />
           <Route path="*" element={<p>404 - Not found</p>} />
+
 
           {/* Protected routes */}
           <Route path="/account"
             element={
-              <PrivateRoute user={user}>
-                <Account />
+              <PrivateRoute user={user} >
+                <Account session={session}/>
               </PrivateRoute>
             }
           />

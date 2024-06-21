@@ -3,17 +3,19 @@ import { Link, Navigate } from "react-router-dom";
 import { useState} from "react";
 import login from "../../api/login";
 
-const LoginForm = () => {
+
+const LoginForm = ({ createSession }) => {
+
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isError, setIsError] = useState(false);
     const [isSuccessful, setIsSuccessful] = useState(false);
-    const [session, setSession] = useState({});
 
     const readEmail = (event) =>{
         const input = event.target.value;
         setEmail(input);
+
     }
 
     const readPassword = (event) =>{
@@ -24,22 +26,22 @@ const LoginForm = () => {
     const loginHandler = async (event) => {
          event.preventDefault();
          const results = await login(email, password);
-         console.log(results.data);
          if (!results.data) {
             setIsError(true);
             setIsSuccessful(false);
          } else {
-            setSession(results.data);
-            console.log(session);
+            createSession(results.data);
             setIsError(false); 
             setIsSuccessful(true);
     }
 }
 
 
+
+
     if (isSuccessful) {
         return(
-            <Navigate to="/" replace />
+            <Navigate to="/Account" replace />
         )
     } else {
         return (
