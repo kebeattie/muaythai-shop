@@ -52,7 +52,7 @@ function App() {
     };
 
     loadProducts();
-    console.log(products);
+    // console.log(products);
    
    
   }, [session]);
@@ -78,7 +78,7 @@ function App() {
 
         <Routes>
           {/* Unprotected routes */}
-          <Route exact path='/' Component={Home} />
+          <Route exact path='/' element={<Home products={products}/>} />
           <Route path="/registration" Component={Register} />
           <Route path="/login" element={<Login createSession={createSession} />} />
           <Route path="/products/:productId" Component={Product} />
