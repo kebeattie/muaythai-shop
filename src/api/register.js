@@ -4,7 +4,7 @@ import axios from "axios";
 
 const register = async (firstname, lastname, email, password) => {
     
-    let results = await axios.post("http://localhost:4001/registration", {
+    let results = await axios.post(`${process.env.REACT_APP_URL}/registration`, {
         password: password,
         email: email,
         firstname: firstname,

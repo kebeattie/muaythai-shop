@@ -5,7 +5,7 @@ import axios from "axios";
 const login = async (email, password) => {
 
     try{
-        let results = await axios.post("http://localhost:4001/login", {
+        let results = await axios.post(`${process.env.REACT_APP_URL}/login`, {
             password: password,
             email: email
         });

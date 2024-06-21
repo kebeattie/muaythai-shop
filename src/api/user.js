@@ -2,7 +2,7 @@
 
 export const getUser = async (userEmail) => {
     try {
-        const response = await fetch(`http://localhost:4001/users/${userEmail}`);
+        const response = await fetch(`${process.env.REACT_APP_URL}/users/${userEmail}`);
         const user = await response.json();
         
         return user;
