@@ -5,7 +5,6 @@ import Header from "../../components/Header/Header";
 import '../Product/Product.css';
 
 const Home = ({ products }) => {
-    console.log(products);
 
     return (
         <div className="container">
