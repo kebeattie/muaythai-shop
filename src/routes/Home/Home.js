@@ -5,7 +5,6 @@ import Header from "../../components/Header/Header";
 
 const Home = ({ products }) => {
     console.log(products);
-    let test = [1, 2, 3];
 
     return (
         <div className="container">
@@ -16,8 +15,7 @@ const Home = ({ products }) => {
 
                 {products.map((product) => {
                     return <Product
-                        key={product.key}
-                        id={product.id}
+                        key={product.id}
                         name={product.name}
                         image={product.image}
                         price={product.price}
