@@ -53,7 +53,7 @@ function App() {
     };
 
     loadProducts();
-    // console.log(products);
+  
    
    
   }, [session]);

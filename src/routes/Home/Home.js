@@ -2,14 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Product from "../Product/Product";
 import Header from "../../components/Header/Header";
+import '../Product/Product.css';
 
 const Home = ({ products }) => {
     console.log(products);
 
     return (
         <div className="container">
-            <h1 className="col-sm">MuayThai shop</h1>
-            <p className="col-sm"><Link to="/registration">click</Link></p>
+            <h1 className="col-sm">Products</h1>
             <div className="flex-container">
 
 

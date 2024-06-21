@@ -1,18 +1,24 @@
 .product-image {
     max-height: 200px;
+    min-height: 200px;
     max-width: 200px;
+    margin: 5px 0;
 }
 
-.card {
-    margin-bottom: 20px;
+.card-product {
+    margin: 10px 10px 0 10px;
     width: 300px;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 2px solid black;
     transition: transform .2s; /* Animation */
+
+}
+.card {
+    margin: 10px 0;
 }
 
-.card:hover {
-    transform: scale(1.05);
+.card-product:hover {
+    transform: scale(1.02);
     z-index: 1;
     cursor: pointer;
   }
@@ -25,8 +31,16 @@
     flex-wrap: wrap;
     margin: 0 auto;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 50vw;
     align-items: center;
     
+}
+
+.description {
+    text-align: left;
+}
+
+.card-button {
+    margin: 20px 0;
 }
