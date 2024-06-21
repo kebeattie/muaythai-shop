@@ -1,24 +1,18 @@
 import React from "react";
+import './Product.css'
+import { Link } from "react-router-dom";
 
 const Product = ({ name, price, image}) => {
     console.log("here");
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col">
-                    <h3>{name}</h3>
-                </div>
+        <div className="card">
+            <div className="card-body">
+                <img className="product-image card-img" src={image} />
+                <h6 class="card-subtitle mb-2 text-muted">{name}</h6>
+                <h5 className="card-title">£{price}</h5>
+                <Link to="/account"><button type="button" className="btn btn-secondary">See more</button></Link>  
             </div>
-            <div className="row">
-                <div className="col">
-                    <img src={image} alt="test"/>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col"><p>£{price}</p></div>
-            </div>
-            
-        </div>
+</div>
     )
 }
 

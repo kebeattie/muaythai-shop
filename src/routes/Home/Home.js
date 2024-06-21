@@ -11,16 +11,21 @@ const Home = ({ products }) => {
         <div className="container">
             <h1 className="col-sm">MuayThai shop</h1>
             <p className="col-sm"><Link to="/registration">click</Link></p>
-            
-            {products.map((product) => {
-               return <Product
-                key={product.key}
-                name={product.name}
-                image={product.image}
-                price={product.price}
-                />
-            })}
+            <div className="flex-container">
 
+
+                {products.map((product) => {
+                    return <Product
+                        key={product.key}
+                        id={product.id}
+                        name={product.name}
+                        image={product.image}
+                        price={product.price}
+                    />
+                })}
+
+
+            </div>
 
         </div>
     )
