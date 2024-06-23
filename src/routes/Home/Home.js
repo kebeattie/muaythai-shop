@@ -20,7 +20,6 @@ const Home = ({ products }) => {
     //Filter which products are displayed
     const productsFilter = (filterBy) => {
         setDisplayedProducts(products.filter((product) => product.category === filterBy));
-        console.log(displayedProducts);
     };
 
     //Filter products by search
@@ -70,9 +69,9 @@ const Home = ({ products }) => {
                             <a className="nav-link" onClick={() => productsFilter("Gloves")}>Boxing Gloves</a>
                         </li>
                     </ul>
-                    <form className="form-inline my-2 my-lg-0 float-end">
-                            <input className="form-control mr-sm-2 float-end" type="search" placeholder="Search" aria-label="Search" onChange={updateSearch}></input>
-                        </form> 
+                    
+                    <input className="mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={updateSearch} onReset={updateSearch}></input>
+                        
                 </div>
             </nav>
 
