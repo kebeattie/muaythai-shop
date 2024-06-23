@@ -9,52 +9,70 @@ const Home = ({ products }) => {
 
 
     const [displayedProducts, setDisplayedProducts] = useState([]);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
-
         setDisplayedProducts(products);
 
     }, [products]);
-    
+
 
     //Filter which products are displayed
     const productsFilter = (filterBy) => {
         setDisplayedProducts(products.filter((product) => product.category === filterBy));
         console.log(displayedProducts);
-
     };
-    
+
+    //Filter products by search
+    const productsFilterBySearch = (search) => {
+        setDisplayedProducts(products.filter((product) => product.name.toLowerCase().includes(search.toLowerCase())));
+    }
+
     //Reset displayed products to default
     const showAllProducts = () => {
         setDisplayedProducts(products);
     }
-   
-    
 
-    
+    //Track search input
+    const updateSearch = (event) => {
+        let value = event.target.value;
+        setSearch(value);
+        if (search.length === 1) showAllProducts();
+        else {
+            productsFilterBySearch(search);
+        };
+        
+    };
+
+
+
+
 
     return (
         <>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand">Products</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <a className="navbar-brand">Products</a>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" onClick={showAllProducts}>All</a>
+                <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            <a className="nav-link"  onClick={showAllProducts}>All</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" onClick={()=> productsFilter("Training")}>Training Gear</a>
+                        <li className="nav-item">
+                            <a className="nav-link" onClick={() => productsFilter("Training")}>Training Gear</a>
                         </li>
-                        <li class="nav-item" >
-                            <a class="nav-link" onClick={() => productsFilter("Shorts")}>Muay Thai Shorts</a>
+                        <li className="nav-item" >
+                            <a className="nav-link" onClick={() => productsFilter("Shorts")}>Muay Thai Shorts</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" onClick={() => productsFilter("Gloves")}>Boxing Gloves</a>
+                        <li className="nav-item">
+                            <a className="nav-link" onClick={() => productsFilter("Gloves")}>Boxing Gloves</a>
                         </li>
                     </ul>
+                    <form className="form-inline my-2 my-lg-0 float-end">
+                            <input className="form-control mr-sm-2 float-end" type="search" placeholder="Search" aria-label="Search" onChange={updateSearch}></input>
+                        </form> 
                 </div>
             </nav>
 
