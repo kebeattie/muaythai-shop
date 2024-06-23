@@ -9,6 +9,7 @@
     margin: 10px 10px 0 10px;
     max-height: 400px;
     min-height: 400px;
+    max-width: 50vw;
     width: 300px;
     border-radius: 10px;
     border: 2px solid black;
@@ -45,4 +46,8 @@
 
 .card-button {
     margin: 20px 0;
+}
+
+.nav-item:hover {
+    cursor: pointer;
 }
