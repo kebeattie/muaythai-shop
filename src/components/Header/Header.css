@@ -3,9 +3,12 @@
 }
 
 .logo {
-    max-width: 300px;
-    max-height: 300px;
-    min-width: 100px;
+    
+    
+    width: 200px;
+    min-width: 10px;
+    height: 100px;
+    min-height: 75px;
 }
 
 .account-link {

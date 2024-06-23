@@ -7,6 +7,8 @@
 
 .card-product {
     margin: 10px 10px 0 10px;
+    max-height: 400px;
+    min-height: 400px;
     width: 300px;
     border-radius: 10px;
     border: 2px solid black;
