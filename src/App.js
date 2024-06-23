@@ -75,7 +75,7 @@ function App() {
     <div className="App">
       
       <Router>
-      <Header />
+      <Header user={user} />
 
         <Routes>
           {/* Unprotected routes */}

@@ -8,7 +8,6 @@ const Login = ({ createSession }) => {
         <div>
             <h1>Login</h1>
             <LoginForm createSession={createSession}/>
-            <p><Link to="/">click</Link></p>
         </div>
     )
 }
