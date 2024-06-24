@@ -46,7 +46,7 @@ const ProductDetails = ({ products, session }) => {
                     <h5 className="card-title">£{product.price}</h5>
                     <button type="button" className="card-button btn btn-secondary" onClick={() => addToCartHandler(product.id, session, 2)}>Add to cart</button>
                     <br></br>
-                    <label for="quantity">Quantity:</label>
+                    <label htmlFor="quantity">Quantity:</label>
                         <select name="quantity" id="quantity" onChange={getQuantity}>
                         <option value="1">1</option>
                         <option value="2">2</option>

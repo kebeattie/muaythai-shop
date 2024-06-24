@@ -2,13 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import './Header.css';
 import logo from "../../media/logo-resize.png"
-import { useEffect } from "react";
+import Cart from "../Cart/Cart";
 
-const Header = ( { user }) => {
+const Header = ( { user, cartTotal }) => {
 
-    // useEffect(() => {
 
-    // }, [user]);
 
     let buttonText = "Login/Register";
 
@@ -17,13 +15,16 @@ const Header = ( { user }) => {
     return (
         <div className="container header">
             <div className="row align-items-end">
-                <div className="col">
+                <div className="col-6">
                     <Link to="/"><img className="logo" src={logo}/></Link>
                 </div>
-                <div className="col align-self-center">
+                <div className="col-4 align-self-center">
+                    
                     <Link to="/account" className="account-link float-end">{buttonText}</Link>
+                    
                 </div>
-                <div className="col-1"></div>
+                
+               {user?<div className="col-2 align-self-center"><Link to="/cart"><Cart /><p className="total">£{cartTotal}</p></Link></div> : <div className="col-1"></div>} 
                 
             </div>
         </div>
