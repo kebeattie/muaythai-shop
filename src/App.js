@@ -106,7 +106,7 @@ function App() {
           <Route path="/cart"
             element={
               <PrivateRoute user={user}>
-                <Cart session={session} cart={cart}/>
+                <Cart session={session} cart={cart} cartTotal={cartTotal} products={products}/>
               </PrivateRoute>
             }
           />
