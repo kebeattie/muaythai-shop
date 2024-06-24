@@ -17,6 +17,7 @@ import getProducts from './api/getProducts';
 import ProductDetails from './routes/Product/ProductDetails';
 import { getCart } from './api/cart';
 import { calcTotal } from './utility/utility';
+import { removeFromCart } from './api/cart';
 
 import {
   BrowserRouter as Router,
@@ -57,6 +58,12 @@ function App() {
     setCartTotal(await(calcTotal(await getCart(session.passport.user))));
   }
 
+//Remove item from cart
+  const removeItemFromCart = async(id) => {
+    removeFromCart(id);
+    setCart(await getCart(session.passport.user));
+    setCartTotal(await(calcTotal(await getCart(session.passport.user))));
+  }
 
   //Set hook so that page re renders when session is changed
   useEffect(() => {
@@ -106,7 +113,7 @@ function App() {
           <Route path="/cart"
             element={
               <PrivateRoute user={user}>
-                <Cart session={session} cart={cart} cartTotal={cartTotal} products={products}/>
+                <Cart session={session} cart={cart} cartTotal={cartTotal} products={products} removeItemFromCart={removeItemFromCart}/>
               </PrivateRoute>
             }
           />

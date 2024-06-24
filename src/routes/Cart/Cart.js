@@ -4,7 +4,7 @@ import { getCart } from "../../api/cart";
 import './Cart.css';
 
 
-const Cart = ({ session, cart, cartTotal, products }) => {
+const Cart = ({ session, cart, cartTotal, products, removeItemFromCart }) => {
     let cartItemIds = [];
 
     cart.map(element => {
@@ -44,7 +44,7 @@ const Cart = ({ session, cart, cartTotal, products }) => {
                                 <td>{element.name}</td>
                                 <td>{element.quantity}</td>
                                 <td>{element.price}</td>
-                                <td className="remove">x</td>
+                                <td className="remove" onClick={() => removeItemFromCart(element.id)}>x</td>
                             </tr>
 
                         )
