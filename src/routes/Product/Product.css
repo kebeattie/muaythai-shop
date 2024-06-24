@@ -71,3 +71,7 @@
     justify-content: space-around;
     
 }
+
+#quantity {
+    margin: 0 5px;
+}

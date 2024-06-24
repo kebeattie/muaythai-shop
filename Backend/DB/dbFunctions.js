@@ -128,8 +128,9 @@ const getProductsByCategory = async (category) => {
 
 //Get a user's cart
 const getCart = async (req, res) => {
-
-    const { email } = req.body;
+    
+    const { email } = req.params;
+    console.log(email);
     const user = await findByEmail(email);
     if (user === null) { res.send('User not found') }
     else {

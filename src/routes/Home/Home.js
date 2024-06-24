@@ -5,7 +5,7 @@ import Header from "../../components/Header/Header";
 import '../Product/Product.css';
 import { useState, useEffect } from "react";
 
-const Home = ({ products }) => {
+const Home = ({ products}) => {
 
 
     const [displayedProducts, setDisplayedProducts] = useState([]);

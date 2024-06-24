@@ -13,3 +13,10 @@
     text-align: right;
     color: white;
 }
+
+.total {
+    color: white;
+    display: inline;
+    margin-left: 5px;
+    font-size: 0.8rem;
+}
