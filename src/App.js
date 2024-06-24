@@ -1,6 +1,4 @@
 import './App.css';
-import { getUser } from './api/user';
-
 import Register from './routes/Register/Register';
 import Home from './routes/Home/Home';
 import Login from './routes/Login/Login';
@@ -20,7 +18,7 @@ import { getCart } from './api/cart';
 import { calcTotal } from './utility/utility';
 import { removeFromCart } from './api/cart';
 import { createOrder } from './api/order';
-import { useNavigate } from 'react-router-dom';
+
 
 import {
   BrowserRouter as Router,
@@ -42,11 +40,6 @@ function App() {
   const [cart, setCart] = useState([]);
   const [cartTotal, setCartTotal]= useState(0);
   
-  
-  // // const getSession = async () => {
-  // //   const results = await getLogin()
-  // //   return results
-  // }
 
   //Load all products from DB
   const loadProducts = async () => {
@@ -57,6 +50,7 @@ function App() {
   const loadCart = async () => {
     setCart(await getCart(session.passport.user));
   };
+  
 //Calculate cart total
   const calcCartTotal = async () => {
     setCartTotal(await(calcTotal(await getCart(session.passport.user))));
@@ -65,7 +59,9 @@ function App() {
 //Create order
   const createAndSaveOrder = async () => {
     createOrder(session.passport.user);
-    
+    setCart(await getCart(session.passport.user));
+    // console.log(cart);
+    await setCartTotal(0);
   }
 
 //Remove item from cart
@@ -81,11 +77,12 @@ function App() {
       setUserEmail("");
     } else {
       setUserEmail(session.passport.user);
-      loadCart();
       calcCartTotal();
     };
+    // loadCart();
+    
     loadProducts();
-  }, [session]);
+  }, [session, cart]);
 
  //Create a session with logged in users details and setUser to true to open protected routes
   const createSession = (session, user) => {
@@ -93,7 +90,7 @@ function App() {
     setUser(user);
   }
 
-
+  
  
   return (
 

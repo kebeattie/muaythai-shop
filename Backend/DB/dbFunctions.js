@@ -140,8 +140,10 @@ const getCart = async (req, res) => {
             [cartId], (error, results) => {
                 if (error) {
                     console.log(error);
+                } else{
+                    res.send(results.rows)
                 }
-                res.send(results.rows);
+                
             }
         )
     }
@@ -215,6 +217,10 @@ const checkout = async (email) => {
 
         await pool.query('UPDATE orders SET total = $1, status = $2 WHERE id = $3',
             [total, 'Confirmed', orderId]
+        )
+
+        await pool.query('DELETE FROM cart_item WHERE cart_id = $1',
+            [cartId]
         )
     }
 

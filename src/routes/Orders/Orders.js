@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { getOrders } from "../../api/order";
+import { useEffect } from "react";
 
 const Orders = ({session}) => {
 
@@ -9,7 +10,10 @@ const Orders = ({session}) => {
         console.log(orders);
     }
 
-    retrieveAllOrders();
+    useEffect(() => {
+        retrieveAllOrders()
+    },[])
+
 
     
     return (

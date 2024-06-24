@@ -6,6 +6,7 @@ import Cart from "../Cart/Cart";
 
 const Header = ( { user, cartTotal }) => {
 
+    
 
 
     let buttonText = "Login/Register";

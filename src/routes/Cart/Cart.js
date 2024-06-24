@@ -1,9 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { getCart } from "../../api/cart";
 import './Cart.css';
 import { useNavigate } from "react-router-dom";
-
+import { useEffect } from "react";
 // navigate("/OrderConfirmed");
 
 
@@ -20,7 +18,9 @@ const Cart = ({ session, cart, cartTotal, products, removeItemFromCart, createAn
 
     let cartProducts = products.filter((product) => cartItemIds.includes(product.id));
 
-
+    useEffect(()=>{
+        
+    },[cart])
 
     //Join our two arrays together
     let zipped = cartProducts.map(obj1 => {
