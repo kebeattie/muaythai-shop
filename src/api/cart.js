@@ -30,7 +30,7 @@ export const getCart = async (email) => {
 
 export const removeFromCart = async (id) => {
     try {
-        const response = await axios.post()
+        const response = await axios.post(`${process.env.REACT_APP_URL}/cart//deleteFromCart/${id}`)
         const results = await response.json();
         return results;
         
