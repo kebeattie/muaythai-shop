@@ -222,7 +222,7 @@ const checkout = async (email) => {
 
 //Get all of a users orders
 const getOrders = async (req, res) => {
-    const { email } = req.body;
+    const { email } = req.params;
     const user = await findByEmail(email);
 
     if (user) {

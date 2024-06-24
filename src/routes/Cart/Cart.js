@@ -2,10 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { getCart } from "../../api/cart";
 import './Cart.css';
+import { useNavigate } from "react-router-dom";
+
+// navigate("/OrderConfirmed");
 
 
-const Cart = ({ session, cart, cartTotal, products, removeItemFromCart }) => {
+const Cart = ({ session, cart, cartTotal, products, removeItemFromCart, createAndSaveOrder }) => {
     let cartItemIds = [];
+    let showOrderButton = false;
+    const navigate = useNavigate();
+
+    if(cartTotal > 0) showOrderButton = true;
 
     cart.map(element => {
         cartItemIds.push(element.product_id);
@@ -20,6 +27,11 @@ const Cart = ({ session, cart, cartTotal, products, removeItemFromCart }) => {
         let obj2 = cart.find(obj2 => obj1.id === obj2.product_id);
         return { ...obj1, ...obj2 };
     });
+
+    const createOrderHandler = () => {
+        createAndSaveOrder(session.passport.user)
+        navigate("/OrderConfirmed");
+    }
 
 
 
@@ -57,6 +69,8 @@ const Cart = ({ session, cart, cartTotal, products, removeItemFromCart }) => {
 
 
             </table>
+            <br></br>
+            {showOrderButton?<button type="button" className="btn btn-primary" onClick={createOrderHandler}>Confirm Order</button>:<></>}
         </div>
     )
 }

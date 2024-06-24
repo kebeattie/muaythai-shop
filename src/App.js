@@ -10,6 +10,7 @@ import Cart from './routes/Cart/Cart';
 import Checkout from './routes/Checkout/Checkout';
 import Orders from './routes/Orders/Orders';
 import Order from './routes/Order/Order';
+import OrderConfirmed from './routes/OrderConfirmed/OrderConfirmed';
 import { useEffect } from 'react';
 import Header from './components/Header/Header';
 import { getLogin } from './api/login';
@@ -18,6 +19,8 @@ import ProductDetails from './routes/Product/ProductDetails';
 import { getCart } from './api/cart';
 import { calcTotal } from './utility/utility';
 import { removeFromCart } from './api/cart';
+import { createOrder } from './api/order';
+import { useNavigate } from 'react-router-dom';
 
 import {
   BrowserRouter as Router,
@@ -39,6 +42,7 @@ function App() {
   const [cart, setCart] = useState([]);
   const [cartTotal, setCartTotal]= useState(0);
   
+  
   // // const getSession = async () => {
   // //   const results = await getLogin()
   // //   return results
@@ -56,6 +60,12 @@ function App() {
 //Calculate cart total
   const calcCartTotal = async () => {
     setCartTotal(await(calcTotal(await getCart(session.passport.user))));
+  }
+
+//Create order
+  const createAndSaveOrder = async () => {
+    createOrder(session.passport.user);
+    
   }
 
 //Remove item from cart
@@ -113,7 +123,7 @@ function App() {
           <Route path="/cart"
             element={
               <PrivateRoute user={user}>
-                <Cart session={session} cart={cart} cartTotal={cartTotal} products={products} removeItemFromCart={removeItemFromCart}/>
+                <Cart session={session} cart={cart} cartTotal={cartTotal} products={products} removeItemFromCart={removeItemFromCart} createAndSaveOrder={createAndSaveOrder}/>
               </PrivateRoute>
             }
           />
@@ -129,7 +139,7 @@ function App() {
           <Route path="/orders"
             element={
               <PrivateRoute user={user}>
-                <Orders />
+                <Orders session={session} />
               </PrivateRoute>
             }
           />
@@ -138,6 +148,14 @@ function App() {
             element={
               <PrivateRoute user={user}>
                 <Orders />
+              </PrivateRoute>
+            }
+          />
+
+          <Route path="/OrderConfirmed"
+            element={
+              <PrivateRoute user={user}>
+                <OrderConfirmed />
               </PrivateRoute>
             }
           />
