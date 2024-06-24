@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { getCart } from "../../api/cart";
 
-const Cart = ({session}) => {
-    const email = session.passport.user;
-    getCart(email);
+const Cart = ({session, cart}) => {
+
+    console.log(cart);
+    
     return (
         <div>
             <h1>Cart</h1>

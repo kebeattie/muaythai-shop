@@ -31,7 +31,7 @@ import { useState } from 'react';
 
 
 function App() {
-   t [user, setUser] = useState(false);
+  const [user, setUser] = useState(false);
   const [session, setSession] = useState({})
   const [userEmail, setUserEmail] = useState("");
   const [products, setProducts]= useState([]);
@@ -106,7 +106,7 @@ function App() {
           <Route path="/cart"
             element={
               <PrivateRoute user={user}>
-                <Cart session={session}/>
+                <Cart session={session} cart={cart}/>
               </PrivateRoute>
             }
           />
