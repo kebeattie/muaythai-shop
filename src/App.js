@@ -79,10 +79,10 @@ function App() {
 
         <Routes>
           {/* Unprotected routes */}
-          <Route exact path='/' element={<Home products={products}/>} />
+          <Route exact path='/' element={<Home products={products} session={session}/>} />
           <Route path="/registration" Component={Register} />
           <Route path="/login" element={<Login createSession={createSession} />} />
-          <Route path=":productId" element={<ProductDetails products={products}/>} />
+          <Route path=":productId" element={<ProductDetails products={products} session={session}/>} />
           <Route path="*" element={<p>404 - Not found</p>} />
 
 
