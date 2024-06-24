@@ -28,7 +28,7 @@ const Cart = ({ session, cart, cartTotal, products, removeItemFromCart, createAn
         return { ...obj1, ...obj2 };
     });
     
-    console.log(zipped);
+    // console.log(zipped);
     const createOrderHandler = async () => {
         await createAndSaveOrder(session.passport.user)
         navigate("/OrderConfirmed");
