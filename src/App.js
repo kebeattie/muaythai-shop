@@ -2,7 +2,6 @@ import './App.css';
 import Register from './routes/Register/Register';
 import Home from './routes/Home/Home';
 import Login from './routes/Login/Login';
-import Product from './routes/Product/Product';
 import Account from './routes/Account/Account';
 import Cart from './routes/Cart/Cart';
 import Checkout from './routes/Checkout/Checkout';
@@ -11,7 +10,6 @@ import Order from './routes/Order/Order';
 import OrderConfirmed from './routes/OrderConfirmed/OrderConfirmed';
 import { useEffect } from 'react';
 import Header from './components/Header/Header';
-import { getLogin } from './api/login';
 import getProducts from './api/getProducts';
 import ProductDetails from './routes/Product/ProductDetails';
 import { getCart } from './api/cart';
@@ -22,10 +20,8 @@ import { createOrder } from './api/order';
 
 import {
   BrowserRouter as Router,
-  Navigate,
   Route,
   Routes,
-  json
 } from "react-router-dom";
 import PrivateRoute from './components/ProtectedRoute/ProtectedRoute';
 import { useState } from 'react';
