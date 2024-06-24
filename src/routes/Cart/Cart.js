@@ -1,20 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { getCart } from "../../api/cart";
+import './Cart.css';
 
 
-const Cart = ({session, cart, cartTotal, products}) => {
+const Cart = ({ session, cart, cartTotal, products }) => {
+    let cartItemIds = [];
 
-    // let cartItemIds = [];
-    
-    // cartItemIds = cart.forEach(element => {
-    //     cartItemIds.push(element.id);
-    // });
+    cart.map(element => {
+        cartItemIds.push(element.product_id);
+    });
 
-    // let cartProducts = products.filter((product) => cartItemIds.includes(product.id));
-    
+    let cartProducts = products.filter((product) => cartItemIds.includes(product.id));
+
+
+
+    //Join our two arrays together
+    console.log(cartProducts, cart)
+    let zipped = cartProducts.map(obj1 => {
+        let obj2 = cart.find(obj2 => obj1.id === obj2.product_id);
+        return { ...obj1, ...obj2 };
+    });
+
+
+
     return (
-        <div>
+        <div className="container cart-container">
             <h1>Cart</h1>
             <table className="cart-table">
                 <thead>
@@ -22,20 +33,29 @@ const Cart = ({session, cart, cartTotal, products}) => {
                         <th>Item</th>
                         <th>Quantity</th>
                         <th>Price</th>
+                        <th>Remove</th>
                     </tr>
                 </thead>
                 <tbody>
-                {cart.map((item) => {
-                    return(
-                    <tr>
-                        <td>{item.name}</td>
-                        <td>{item.quantity}</td>
-                        <td>{item.price}</td>
-                    </tr>
-                    )
+                    {zipped.map((element) => {
+                        
+                        return (
+                            <tr>
+                                <td>{element.name}</td>
+                                <td>{element.quantity}</td>
+                                <td>{element.price}</td>
+                                <td className="remove">x</td>
+                            </tr>
+
+                        )
+
                     })}
+                    <tr>
+                        <td className="last" colSpan="4">Total: £{cartTotal}</td>
+                        
+                    </tr>
                 </tbody>
-                
+
 
             </table>
         </div>
