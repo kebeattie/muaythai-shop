@@ -14,7 +14,6 @@ const ProductDetails = ( { products} ) => {
 
    
 
-    console.log(product);
     return (
         <div className="flex-container">
             <h1 className="col-sm">{product.name}</h1>
