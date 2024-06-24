@@ -7,7 +7,7 @@ const ProductDetails = ( { products} ) => {
     let product = [];
 
     products.forEach(element => {
-        if (element.id == id) {
+        if (element.id === id) {
             product = element;
         }
     });
