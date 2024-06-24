@@ -40,7 +40,7 @@ const Home = ({ products }) => {
         else {
             productsFilterBySearch(search);
         };
-        
+
     };
 
 
@@ -49,31 +49,39 @@ const Home = ({ products }) => {
 
     return (
         <>
+
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand">Products</a>
+
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <a className="nav-link"  onClick={showAllProducts}>All</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" onClick={() => productsFilter("Training")}>Training Gear</a>
-                        </li>
-                        <li className="nav-item" >
-                            <a className="nav-link" onClick={() => productsFilter("Shorts")}>Muay Thai Shorts</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" onClick={() => productsFilter("Gloves")}>Boxing Gloves</a>
-                        </li>
-                    </ul>
-                    
-                    <input className="mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={updateSearch} onReset={updateSearch}></input>
-                        
+                    <div className="navbar-flex">
+                        <div className="item-flex">
+                            <ul className="navbar-nav">
+                                <li className="nav-item">
+                                    <a className="nav-link" onClick={showAllProducts}>All</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" onClick={() => productsFilter("Training")}>Training Gear</a>
+                                </li>
+                                <li className="nav-item" >
+                                    <a className="nav-link" onClick={() => productsFilter("Shorts")}>Muay Thai Shorts</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" onClick={() => productsFilter("Gloves")}>Boxing Gloves</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div className="search-flex">
+                            <input className="mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={updateSearch} onReset={updateSearch}></input>
+                        </div>
+                    </div>
+
                 </div>
             </nav>
+
 
             <div className="container">
                 <div className="flex-container">

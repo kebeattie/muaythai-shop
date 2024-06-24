@@ -52,3 +52,22 @@
     cursor: pointer;
 }
 
+/* .row {
+    border: 2px solid red;
+} */
+
+/* .col {
+    border: 2px solid blueviolet;
+} */ 
+
+/* .navbar {
+
+} */
+
+.navbar-flex {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+}
