@@ -4,7 +4,7 @@ import { addToCart } from "../../api/cart";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-const ProductDetails = ({ products, session }) => {
+const ProductDetails = ({ products, session, loadCart, calcCartTotal }) => {
 
     const pathName = window.location.pathname;
     const id = pathName.replace('/', '');
@@ -21,12 +21,14 @@ const ProductDetails = ({ products, session }) => {
 
 
 
-    const addToCartHandler = (id, user) => {
+    const addToCartHandler = async (id, user) => {
         if (JSON.stringify(session) == "{}") {
             navigate("/login");
         }
         else {
             addToCart(id, user.passport.user, quantity);
+            await loadCart(user.passport.user);
+            await calcCartTotal(loadCart(user.passport.user));
         }
     }
 

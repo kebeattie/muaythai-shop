@@ -31,7 +31,7 @@ import { useState } from 'react';
 
 
 function App() {
-  const [user, setUser] = useState(false);
+   t [user, setUser] = useState(false);
   const [session, setSession] = useState({})
   const [userEmail, setUserEmail] = useState("");
   const [products, setProducts]= useState([]);
@@ -90,7 +90,7 @@ function App() {
           <Route exact path='/' element={<Home products={products} session={session}/>} />
           <Route path="/registration" Component={Register} />
           <Route path="/login" element={<Login createSession={createSession} />} />
-          <Route path=":productId" element={<ProductDetails products={products} session={session}/>} />
+          <Route path=":productId" element={<ProductDetails products={products} session={session} loadCart={loadCart} calcCartTotal={calcCartTotal}/>} />
           <Route path="*" element={<p>404 - Not found</p>} />
 
 
