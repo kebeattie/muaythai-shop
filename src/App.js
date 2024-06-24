@@ -59,9 +59,8 @@ function App() {
 //Create order
   const createAndSaveOrder = async () => {
     createOrder(session.passport.user);
-    setCart(await getCart(session.passport.user));
-    // console.log(cart);
-    await setCartTotal(0);
+    setCartTotal(0);
+    setCart([]);
   }
 
 //Remove item from cart
@@ -77,12 +76,17 @@ function App() {
       setUserEmail("");
     } else {
       setUserEmail(session.passport.user);
-      calcCartTotal();
     };
-    // loadCart();
+    
     
     loadProducts();
   }, [session, cart]);
+
+  useEffect(()=> {
+    loadCart();
+    calcCartTotal();
+  },[])
+
 
  //Create a session with logged in users details and setUser to true to open protected routes
   const createSession = (session, user) => {
@@ -120,7 +124,7 @@ function App() {
           <Route path="/cart"
             element={
               <PrivateRoute user={user}>
-                <Cart session={session} cart={cart} cartTotal={cartTotal} products={products} removeItemFromCart={removeItemFromCart} createAndSaveOrder={createAndSaveOrder}/>
+                <Cart session={session} cart={cart} cartTotal={cartTotal} products={products} removeItemFromCart={removeItemFromCart} createAndSaveOrder={createAndSaveOrder} loadCart={loadCart}/>
               </PrivateRoute>
             }
           />

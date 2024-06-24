@@ -211,7 +211,7 @@ const checkout = async (email) => {
             let productId = element.product_id;
             let quantity = element.quantity;
             let price = element.price;
-            total += Number(price.replace(/[^0-9.-]+/g, ""));
+            total += Number(price.replace(/[^0-9.-]+/g, "") * quantity);
             saveOrderItems(orderItemId, orderId, quantity, price, productId);
         })
 

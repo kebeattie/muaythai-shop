@@ -5,9 +5,7 @@ import logo from "../../media/logo-resize.png"
 import Cart from "../Cart/Cart";
 
 const Header = ( { user, cartTotal }) => {
-
-    
-
+    console.log(cartTotal)
 
     let buttonText = "Login/Register";
 
