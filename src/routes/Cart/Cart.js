@@ -16,7 +16,6 @@ const Cart = ({ session, cart, cartTotal, products, removeItemFromCart }) => {
 
 
     //Join our two arrays together
-    console.log(cartProducts, cart)
     let zipped = cartProducts.map(obj1 => {
         let obj2 = cart.find(obj2 => obj1.id === obj2.product_id);
         return { ...obj1, ...obj2 };
