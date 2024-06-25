@@ -9,7 +9,7 @@
     margin: 10px 10px 0 10px;
     max-height: 400px;
     min-height: 400px;
-    max-width: 50vw;
+    max-width: vw;
     width: 300px;
     border-radius: 10px;
     border: 2px solid black;
@@ -74,4 +74,14 @@
 
 #quantity {
     margin: 0 5px;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    min-width: 70vw;
+}
+
+.title {
+    padding: 10px;
 }

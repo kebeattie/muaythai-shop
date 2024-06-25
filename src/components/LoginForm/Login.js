@@ -2,7 +2,7 @@ import React from "react";
 import { Link, Navigate } from "react-router-dom";
 import { useState} from "react";
 import login from "../../api/login";
-
+import './Login.css';
 
 const LoginForm = ({ createSession }) => {
 
@@ -59,12 +59,15 @@ const LoginForm = ({ createSession }) => {
                                 <label htmlFor="exampleInputPassword1">Password</label>
                                 <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" required onChange={readPassword}/>
                             </div>
-                            <button type="submit" className="btn btn-primary" >Submit</button>
+                            <br></br>
+                            <button type="submit" className="btn btn-success submit-button" >Submit</button>
                         </form>
                     </div>
                     <div className="col-sm">
+                        <br></br>
                         <h2>Don't have an account?</h2>
-                        <Link to="/registration"><button type="button" className="btn btn-light">Register Here</button></Link>
+                        <br></br>
+                        <Link to="/registration"><button type="button" className="btn btn-primary reg-button">Register Here</button></Link>
                     
                     </div>
                 </div>

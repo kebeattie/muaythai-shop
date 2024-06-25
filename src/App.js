@@ -6,7 +6,6 @@ import Account from './routes/Account/Account';
 import Cart from './routes/Cart/Cart';
 import Checkout from './routes/Checkout/Checkout';
 import Orders from './routes/Orders/Orders';
-import Order from './routes/Order/Order';
 import OrderConfirmed from './routes/OrderConfirmed/OrderConfirmed';
 import { useEffect } from 'react';
 import Header from './components/Header/Header';

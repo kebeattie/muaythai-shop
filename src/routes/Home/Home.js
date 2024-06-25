@@ -4,6 +4,8 @@ import Product from "../Product/Product";
 import Header from "../../components/Header/Header";
 import '../Product/Product.css';
 import { useState, useEffect } from "react";
+import './Home.css';
+import { click } from "@testing-library/user-event/dist/click";
 
 const Home = ({ products}) => {
 
@@ -44,7 +46,22 @@ const Home = ({ products}) => {
     };
 
 
+    //Mobile Nav button
 
+    let toggle = false;
+    const clickHandler = () => {
+        let element = document.getElementById("navbarNav");
+            toggle = !toggle
+
+            if(!toggle) element.style.display = "none";
+            else element.style.display = "inline";
+            
+            
+            
+            
+}
+        
+    
 
 
     return (
@@ -52,10 +69,10 @@ const Home = ({ products}) => {
 
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
 
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button className="navbar-toggler" onClick={clickHandler} type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
+                <div className="navbar-collapse collapse nav" id="navbarNav">
                     <div className="navbar-flex">
                         <div className="item-flex">
                             <ul className="navbar-nav">

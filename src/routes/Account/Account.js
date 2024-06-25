@@ -8,7 +8,6 @@ const Account = ({ session, createSession }) => {
             <h1>Welcome, {session.passport.user}</h1>
             <p><Link to="/">Home</Link></p>
             <p><Link to="/orders">Orders</Link></p>
-            <p><Link to="/checkout">Checkout</Link></p>
             <Logout createSession={createSession} />
             
             

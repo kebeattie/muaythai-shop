@@ -4,7 +4,6 @@
 
 .logo {
     width: 250px;
-    min-width: 10px;
     height: 100px;
     min-height: 75px;
 }
@@ -19,4 +18,11 @@
     display: inline;
     margin-left: 5px;
     font-size: 0.8rem;
+}
+
+
+@media only screen and (max-width: 500px) {
+    .logo {
+        width: 215px;
+    }
 }

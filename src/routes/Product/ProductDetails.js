@@ -38,8 +38,8 @@ const ProductDetails = ({ products, session, loadCart, calcCartTotal }) => {
 
 
     return (
-        <div className="flex-container">
-            <h1 className="col-sm">{product.name}</h1>
+        <div className="flex-container product-details">
+            <h1 className="col-sm title">{product.name}</h1>
             <div className="card shadow p-3 mb-5 bg-white rounded">
                 <div className="card-body">
                     <img className="product-image card-img" src={product.image} />

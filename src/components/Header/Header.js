@@ -11,23 +11,25 @@ const Header = ( { user, cartTotal }) => {
 
     },[cartTotal, user]);
 
-    let buttonText = "Login/Register";
+    let buttonText = "";
+    let colWidth = "";
 
     user ? buttonText = "Account" : buttonText =  "Login/Register";
+    user? colWidth = "col-4 align-self-center auth-link": colWidth ="col-5 align-self-center auth-link";
 
     return (
-        <div className="container header">
+        <div className="container-fluid header">
             <div className="row align-items-end">
                 <div className="col-6">
                     <Link to="/"><img className="logo" src={logo}/></Link>
                 </div>
-                <div className="col-4 align-self-center">
+                <div className={colWidth}>
                     
                     <Link to="/account" className="account-link float-end">{buttonText}</Link>
                     
                 </div>
                 
-               {user?<div className="col-2 align-self-center"><Link to="/cart"><Cart /><p className="total">£{cartTotal}</p></Link></div> : <div className="col-1"></div>} 
+               {user?<div className="col-1 align-self-center"><Link to="/cart"><Cart /><p className="total">£{cartTotal}</p></Link></div> : <div></div>} 
                 
             </div>
         </div>

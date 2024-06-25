@@ -1,3 +1,7 @@
-.navbar-nav {
-    width: 100vw;
+.nav-item {
+    text-align: left;
+}
+
+.navbar-toggler {
+    margin: 0 auto;
 }

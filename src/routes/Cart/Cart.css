@@ -1,6 +1,7 @@
 .cart-table {
     border: 1px solid black;
-    width: 50%;
+    width: 70%;
+    /* min-width: 50%; */
 }
 
 .remove {

@@ -82,12 +82,15 @@ const Registration = () => {
                             <label htmlFor="exampleInputPassword1">Password</label>
                             <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" required onChange={readPassword}/>
                         </div>
-                        <button type="submit" className="btn btn-primary" >Submit</button>
+                        <br></br>
+                        <button type="submit" className="btn btn-success" >Submit</button>
                     </form>
                 </div>
                 <div className="col-sm">
+                    <br></br>
                     <h2>Already registered?</h2>
-                    <Link to="/login"><button type="button" className="btn btn-light">Login Here</button></Link>
+                    <br></br>
+                    <Link to="/login"><button type="button" className="btn btn-primary">Login Here</button></Link>
                 
                 </div>
             </div>
