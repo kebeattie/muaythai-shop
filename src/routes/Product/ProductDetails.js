@@ -26,7 +26,7 @@ const ProductDetails = ({ products, session, loadCart, calcCartTotal }) => {
             navigate("/login");
         }
         else {
-            addToCart(id, user.passport.user, quantity);
+            await addToCart(id, user.passport.user, quantity);
             await loadCart(user.passport.user);
             await calcCartTotal(loadCart(user.passport.user));
         }
