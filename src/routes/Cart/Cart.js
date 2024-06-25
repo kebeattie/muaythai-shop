@@ -9,26 +9,43 @@ const Cart = ({ session, cart, cartTotal, products, removeItemFromCart, createAn
     let cartItemIds = [];
     let showOrderButton = false;
     const navigate = useNavigate();
-    
     if(cartTotal > 0) showOrderButton = true;
+    const oldKey = "id";
+    const newKey ="cart_product_id";
 
-    cart.map(element => {
+    cart.forEach(element => {
         cartItemIds.push(element.product_id);
     });
 
-    let cartProducts = products.filter((product) => cartItemIds.includes(product.id));
 
     useEffect(()=>{
         
     },[cartTotal])
 
-    //Join our two arrays together
-    let zipped = cartProducts.map(obj1 => {
-        let obj2 = cart.find(obj2 => obj1.id === obj2.product_id);
+    useEffect(()=> {
+        cart.map((object) => {
+            delete Object.assign(object, {[newKey]: object[oldKey] })[oldKey];
+    })
+
+        
+    },[cart])
+
+
+    
+    
+    let cartProducts = products.filter((product) => cartItemIds.includes(product.id));
+    
+    // Join our two arrays together
+    let zipped = cart.map(obj1 => {
+        let obj2 = cartProducts.find(obj2 => obj1.product_id === obj2.id);
         return { ...obj1, ...obj2 };
     });
     
+    // console.log(cart);
+    // console.log(cartProducts);
+    // console.log(cartItemIds);
     // console.log(zipped);
+    
     const createOrderHandler = async () => {
         await createAndSaveOrder(session.passport.user)
         navigate("/OrderConfirmed");
@@ -56,8 +73,8 @@ const Cart = ({ session, cart, cartTotal, products, removeItemFromCart, createAn
                             <tr>
                                 <td>{element.name}</td>
                                 <td>{element.quantity}</td>
-                                <td>{element.price}</td>
-                                <td className="remove" onClick={() => removeItemFromCart(element.id)}>x</td>
+                                <td>£{element.price}</td>
+                                <td className="remove" onClick={() => removeItemFromCart(element.cart_product_id)}>x</td>
                             </tr>
 
                         )

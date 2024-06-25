@@ -9,7 +9,7 @@ const Header = ( { user, cartTotal }) => {
 
     useEffect(()=>{
 
-    },[cartTotal]);
+    },[cartTotal, user]);
 
     let buttonText = "Login/Register";
 

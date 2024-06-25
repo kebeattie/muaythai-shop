@@ -49,7 +49,10 @@ function App() {
   
 //Calculate cart total
   const calcCartTotal = async () => {
-    setCartTotal(await(calcTotal(await getCart(session.passport.user))));
+    if(user){
+      setCartTotal(await(calcTotal(await getCart(session.passport.user))));
+    }
+    
   }
 
 //Create order
@@ -61,7 +64,8 @@ function App() {
 
 //Remove item from cart
   const removeItemFromCart = async(id) => {
-    removeFromCart(id);
+    // console.log(id);
+    await removeFromCart(id);
     setCart(await getCart(session.passport.user));
     setCartTotal(await(calcTotal(await getCart(session.passport.user))));
   }
@@ -79,8 +83,11 @@ function App() {
   }, [session, cart]);
 
   useEffect(()=> {
-    loadCart();
-    calcCartTotal();
+    if(user) {
+      loadCart();
+      calcCartTotal();
+    }
+    
   },[])
 
 
