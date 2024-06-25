@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import './Header.css';
 import logo from "../../media/logo-resize.png"
 import Cart from "../Cart/Cart";
+import { useEffect } from "react";
 
 const Header = ( { user, cartTotal }) => {
 
+    useEffect(()=>{
 
+    },[cartTotal, user]);
 
     let buttonText = "Login/Register";
 

@@ -1,30 +1,27 @@
 import './App.css';
-import { getUser } from './api/user';
-
 import Register from './routes/Register/Register';
 import Home from './routes/Home/Home';
 import Login from './routes/Login/Login';
-import Product from './routes/Product/Product';
 import Account from './routes/Account/Account';
 import Cart from './routes/Cart/Cart';
 import Checkout from './routes/Checkout/Checkout';
 import Orders from './routes/Orders/Orders';
 import Order from './routes/Order/Order';
+import OrderConfirmed from './routes/OrderConfirmed/OrderConfirmed';
 import { useEffect } from 'react';
 import Header from './components/Header/Header';
-import { getLogin } from './api/login';
 import getProducts from './api/getProducts';
 import ProductDetails from './routes/Product/ProductDetails';
 import { getCart } from './api/cart';
 import { calcTotal } from './utility/utility';
 import { removeFromCart } from './api/cart';
+import { createOrder } from './api/order';
+
 
 import {
   BrowserRouter as Router,
-  Navigate,
   Route,
   Routes,
-  json
 } from "react-router-dom";
 import PrivateRoute from './components/ProtectedRoute/ProtectedRoute';
 import { useState } from 'react';
@@ -39,10 +36,6 @@ function App() {
   const [cart, setCart] = useState([]);
   const [cartTotal, setCartTotal]= useState(0);
   
-  // // const getSession = async () => {
-  // //   const results = await getLogin()
-  // //   return results
-  // }
 
   //Load all products from DB
   const loadProducts = async () => {
@@ -53,14 +46,26 @@ function App() {
   const loadCart = async () => {
     setCart(await getCart(session.passport.user));
   };
+  
 //Calculate cart total
   const calcCartTotal = async () => {
-    setCartTotal(await(calcTotal(await getCart(session.passport.user))));
+    if(user){
+      setCartTotal(await(calcTotal(await getCart(session.passport.user))));
+    }
+    
+  }
+
+//Create order
+  const createAndSaveOrder = async () => {
+    createOrder(session.passport.user);
+    setCartTotal(0);
+    setCart([]);
   }
 
 //Remove item from cart
   const removeItemFromCart = async(id) => {
-    removeFromCart(id);
+    // console.log(id);
+    await removeFromCart(id);
     setCart(await getCart(session.passport.user));
     setCartTotal(await(calcTotal(await getCart(session.passport.user))));
   }
@@ -71,11 +76,20 @@ function App() {
       setUserEmail("");
     } else {
       setUserEmail(session.passport.user);
+    };
+    
+    
+    loadProducts();
+  }, [session, cart]);
+
+  useEffect(()=> {
+    if(user) {
       loadCart();
       calcCartTotal();
-    };
-    loadProducts();
-  }, [session]);
+    }
+    
+  },[])
+
 
  //Create a session with logged in users details and setUser to true to open protected routes
   const createSession = (session, user) => {
@@ -83,7 +97,7 @@ function App() {
     setUser(user);
   }
 
-
+  
  
   return (
 
@@ -113,7 +127,7 @@ function App() {
           <Route path="/cart"
             element={
               <PrivateRoute user={user}>
-                <Cart session={session} cart={cart} cartTotal={cartTotal} products={products} removeItemFromCart={removeItemFromCart}/>
+                <Cart session={session} cart={cart} cartTotal={cartTotal} products={products} removeItemFromCart={removeItemFromCart} createAndSaveOrder={createAndSaveOrder} loadCart={loadCart}/>
               </PrivateRoute>
             }
           />
@@ -129,7 +143,7 @@ function App() {
           <Route path="/orders"
             element={
               <PrivateRoute user={user}>
-                <Orders />
+                <Orders session={session} />
               </PrivateRoute>
             }
           />
@@ -138,6 +152,14 @@ function App() {
             element={
               <PrivateRoute user={user}>
                 <Orders />
+              </PrivateRoute>
+            }
+          />
+
+          <Route path="/OrderConfirmed"
+            element={
+              <PrivateRoute user={user}>
+                <OrderConfirmed />
               </PrivateRoute>
             }
           />

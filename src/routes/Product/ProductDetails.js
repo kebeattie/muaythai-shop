@@ -26,7 +26,7 @@ const ProductDetails = ({ products, session, loadCart, calcCartTotal }) => {
             navigate("/login");
         }
         else {
-            addToCart(id, user.passport.user, quantity);
+            await addToCart(id, user.passport.user, quantity);
             await loadCart(user.passport.user);
             await calcCartTotal(loadCart(user.passport.user));
         }
@@ -46,7 +46,7 @@ const ProductDetails = ({ products, session, loadCart, calcCartTotal }) => {
                     <hr></hr>
                     <p className="description">{product.description}</p>
                     <h5 className="card-title">£{product.price}</h5>
-                    <button type="button" className="card-button btn btn-secondary" onClick={() => addToCartHandler(product.id, session, 2)}>Add to cart</button>
+                    <button type="button" className="card-button btn btn-secondary" onClick={() => addToCartHandler(product.id, session)}>Add to cart</button>
                     <br></br>
                     <label htmlFor="quantity">Quantity:</label>
                         <select name="quantity" id="quantity" onChange={getQuantity}>

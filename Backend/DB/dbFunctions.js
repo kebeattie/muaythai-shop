@@ -140,8 +140,10 @@ const getCart = async (req, res) => {
             [cartId], (error, results) => {
                 if (error) {
                     console.log(error);
+                } else{
+                    res.send(results.rows)
                 }
-                res.send(results.rows);
+                
             }
         )
     }
@@ -209,12 +211,16 @@ const checkout = async (email) => {
             let productId = element.product_id;
             let quantity = element.quantity;
             let price = element.price;
-            total += Number(price.replace(/[^0-9.-]+/g, ""));
+            total += Number(price.replace(/[^0-9.-]+/g, "") * quantity);
             saveOrderItems(orderItemId, orderId, quantity, price, productId);
         })
 
         await pool.query('UPDATE orders SET total = $1, status = $2 WHERE id = $3',
             [total, 'Confirmed', orderId]
+        )
+
+        await pool.query('DELETE FROM cart_item WHERE cart_id = $1',
+            [cartId]
         )
     }
 
@@ -222,7 +228,7 @@ const checkout = async (email) => {
 
 //Get all of a users orders
 const getOrders = async (req, res) => {
-    const { email } = req.body;
+    const { email } = req.params;
     const user = await findByEmail(email);
 
     if (user) {
